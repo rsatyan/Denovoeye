@@ -15,7 +15,7 @@ var graph = require('fbgraph'),
 var config = {
 
     // Base URL of the App (must be a publically accessible URL)
-    redirect_uri:  'http://young-refuge-1696.herokuapp.com/',
+    redirect_uri:  'http://murmuring-brook-2220.herokuapp.com/',
 
     // Facebook Application ID
     client_id:     '203519769808871',
