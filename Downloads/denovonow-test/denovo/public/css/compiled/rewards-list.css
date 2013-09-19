@@ -1,0 +1,227 @@
+.users-list .header input.search {
+  padding: 5px 6px;
+  position: relative;
+  top: -1px; }
+  .users-list .header input.search:focus {
+    box-shadow: none;
+    border: 1px solid #888; }
+.users-list .header .ui-select {
+  margin: 3px 40px 0 0; }
+.users-list .header .ui-dropdown {
+  margin-left: 20px; }
+.users-list .header a.btn-flat span {
+  font-size: 17px;
+  position: relative;
+  top: 2px;
+  margin-right: 4px; }
+.users-list .table td {
+  vertical-align: middle;
+  font-size: 13px; }
+.users-list .table img.avatar {
+  float: left;
+  margin-right: 14px;
+  max-width: 45px;
+  position: relative;
+  top: 8px; }
+.users-list .table a.name {
+  color: #3389d1;
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 15px 0 0 0; }
+.users-list .table .subtext {
+  font-size: 12px;
+  margin-left: 0;
+  color: #778391;
+  font-style: italic;
+  margin-top: 0; }
+.users-list .pagination {
+  margin-top: 25px; }
+
+/* responsive */
+@media (max-width: 767px) {
+  .ui-dropdown .dialog .body {
+    width: 250px;
+    left: 58%;
+    position: relative; }
+
+  .users-list .table a.name {
+    font-size: 12px; }
+  .users-list .table td {
+    font-size: 12px; }
+  .users-list h3 {
+    display: block;
+    float: none;
+    margin-bottom: 30px; }
+  .users-list .header input.search {
+    margin-bottom: 18px; }
+  .users-list .header .ui-dropdown {
+    float: left;
+    margin-left: 0; }
+
+  .ui-dropdown .dialog .body .form input[type="text"] {
+    margin-top: 10px; }
+
+  .ui-dropdown .dialog .body .form a {
+    margin-top: 10px;
+    margin-left: 18px; } }
+
+
+.sweepstake > ul {
+  list-style: none;
+  margin: 0 -10px;
+  padding: 0;
+  *zoom: 1;
+}
+.sweepstake > ul:before,
+.sweepstake > ul:after {
+  display: table;
+  content: "";
+}
+.sweepstake > ul:after {
+  clear: both;
+}
+.sweepstake > ul > li {
+  float: left;
+  margin: 10px;
+  padding: 0 0 8px 0;
+  position: relative;
+  background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.sweepstake > ul > li .thumb {
+  overflow: hidden;
+  display: block;
+  position: relative;
+  line-height: 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.sweepstake > ul > li .thumb > a {
+  display: block;
+  text-decoration: none;
+}
+.sweepstake > ul > li .thumb > a:active {
+  margin-top: 1px;
+  margin-bottom: -1px;
+}
+.sweepstake > ul > li .thumb img {
+  min-width: 100%;
+  height: auto;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+.sweepstake > ul > li .meta {
+  position: relative;
+  padding: 7px 15px 6px 55px;
+  margin: 0px 0 0 0;
+  height: 53px;
+  /*-webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;*/
+  background: #f5f5f5
+}
+.sweepstake > ul > li .meta .title,
+.sweepstake > ul > li .meta .by {
+  display: block;
+  position: absolute;
+  padding-right: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-rendering: optimizelegibility;
+  overflow: hidden;
+  width: 100%;
+  z-index: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-left: 4px;
+}
+.sweepstake > ul > li .meta .title {  
+  line-height: 20px;
+  font-size: 16px;
+  font-family: ApexRounded, sans-serif;
+}
+.sweepstake > ul > li .meta .by {
+  font-size: 12px;
+  top: 24px;
+}
+.sweepstake > ul > li .meta .by .fork-icn:before {
+  font-size: 17px;
+  font-size: 1.0625rem;
+  line-height: .5;
+}
+.sweepstake > ul > li .meta .avatar {
+  position: absolute;
+  top: 1px;
+  left: 7px;
+  width: 45px;
+  height: 45px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.sweepstake > ul > li .by {
+  color: #454545;
+}
+.sweepstake > ul > li .stats {  
+  display: block;
+  float: right;
+  font-size: 16px;
+  font-family: ApexRounded, sans-serif;
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+}
+.sweepstake > ul > li .comments {
+  display: inline-block;
+  margin: -2px 5px 0 0;
+}
+.sweepstake > ul > li .comments:after {
+  content: '>';
+  font-family: Icons;
+  font-size: 1.2em;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -3px 0 0 5px;
+  color: #ccc;
+}
+.sweepstake > ul > li .ctrl-favorites {
+  display: inline-block;
+}
+.sweepstake > ul > li .comments,
+.sweepstake > ul > li .ctrl-favorites {
+  vertical-align: middle;
+}
+.sweepstake .awards {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.85;
+  filter: alpha(opacity=85);
+}
+.sweepstake .awards > * {
+  display: block;
+  float: left;
+  margin-left: 5px;
+}
+.sweepstake .featured a {
+  margin-top: 1px;
+  text-indent: 100%;
+  white-space: nowrap;
+  text-indent: 1000em;
+  overflow: hidden;
+  display: block;
+  background-image: url('/images/www/awards/featured.png');
+  width: 52px;
+  height: 63px;
+}

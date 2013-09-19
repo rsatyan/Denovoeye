@@ -1,0 +1,133 @@
+<li id="challenge-1134" data-id="1134" data-difficulty="1">
+  <div class="filp-container" id="flip-toggle">
+    <div class="flipper">
+      <div class="cardfront">
+        <div class="summary-card challenge-summary-card <%=question.id.toString()%>card">
+          <div class="inner-wrapper">
+            <div class="summary-media summary-media-type-img">
+              <img src="<%=question.imgurl%>">
+            </div>
+            <div class="summary-content">
+              <h3 class="sml-text challenge-heading">
+                <a><%=question.cardType%></a>
+              </h3>
+              <p class="challenge-desc">
+                <%=question.description%>
+              </p>
+              <div class="row-fluid actionbuttons">
+                <% var totalpt = 0 %>
+                <% for(var j = 0; j < question.options.length; j++ ) {%> 
+                <% var option = question.options[j] %>
+                <% var optionPt = 0 %>
+                <% if (option.items && option.items.length > 0) { %>
+                <% var item = option.items[0] %>
+                <% if (optionPt < item.point) { %>
+                <% optionPt = Number(item.point) %>
+                <% } %>
+                <% var id = question.id.toString()+" "+option._id+" "+item._id+" "+item.point %>
+                <% var questionid = question.id.toString() %>
+                <% if (option.type === 'single') {%>
+                <% if (item.name === 'Yes') { %>
+                <a id="<%=id%>" onclick="onOptionClicked(this.id);" class="span6 btn btn-success">
+                  <span>
+                    Yes
+                  </span>
+                </a>
+                <% } else { %>
+                <a id="<%= id %>" onclick="onOptionClicked(this.id);" class="span6 btn">
+                  No
+                </a>
+                <% } %>
+                <% } else if (option.type === 'input') { %>
+                <input id="<%= id %>" style="margin-top:10px;height:30px" class="span6 input" placeholder="<%=item.name%>" type="text">
+                <% } else if (option.type === 'select') { %>
+                <select style="height:30px" class="span6 select2" onchange="onOptionSelected(this)">
+                  <option> </option>
+                  <%for (var z = 0; z < option.items.length; z++) { %>
+                  <% var currentItem = option.items[z] %>
+                  <% var optionId = question.id.toString()+" "+option._id+" "+currentItem._id+" "+currentItem.point %>
+                  <% if (optionPt < Number(currentItem.point)) { %>
+                  <% optionPt = Number(currentItem.point) %>
+                  <%} %>
+                  <option id="<%= optionId %>" value="<%=currentItem.point%>">
+                    <%=currentItem.name%>
+                  </option>
+                  <% } %>
+                </select>
+                <% }%>
+                <%} %>
+                <% totalpt = totalpt + optionPt %>
+                <% } %>
+              </div>
+              <span class="skill-medallion-wrapper">
+                <span class="skill-medallion-border"></span>
+                <span id="<%=question.id.toString()%>-checkMark" class="skill-medallion">
+                  <span class="skill-text">+<%=totalpt%></span>
+                </span>
+              </span>
+              <span id="xdatepicker" class="date-wrapper">
+                <a href="timeline?questionId=<%=question.id.toString()%>">
+                  <p>
+                    <%=date%>
+                  </p>
+                  <p>
+                    <%=monthName%>
+                  </p>
+                  <p>
+                    <%=dayname%>
+                  </p>
+                </a>
+              </span>
+              <span class="medallion-shadow"></span>
+              <span id="<%=question.id.toString()%>-date-selector" class="date-selector question">
+                <%- weekTimeLineHTML %>
+              </span>
+            </div>
+          </div>
+          <div id="level-selector" class="rest <%=question.id.toString()%>" onclick="javascript:$('.<%=question.id.toString()%>').removeClass('animate')">
+            <nav>
+              <ul>
+                <li>
+                  <a onclick="changelevel(1)">
+                    Easy
+                  </a>
+                  <br/>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                </li>
+                <li>
+                  <a onclick="changelevel(2)">
+                    Advanced
+                  </a>
+                  <br/>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <span onclick="javascript:$('.<%=question.id.toString()%>').addClass('animate')" class="label difficulty-label">
+            <% var levelstring = "Easy" %>
+            <% if(question.level == 2) levelstring = "Advanced" %>
+            <span class="label-text"><%=levelstring%></span>
+          </span>
+          <span class="labelx days-label">
+            <span id="<%=question.id.toString()%>-days-text" class="days-text">
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="cardback">
+        <div class="calendar-card">
+          <div id="inline-datepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" /></div>
+          <span onclick="document.querySelector('#flip-toggle').classList.toggle('flip');" class="date-wrapper">
+            <p>
+              <%=date%>
+            </p>
+            <p>
+              <%=dayname%>
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

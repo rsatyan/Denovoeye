@@ -1,0 +1,2 @@
+# denovo
+### a Sails application

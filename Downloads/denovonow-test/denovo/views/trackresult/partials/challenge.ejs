@@ -1,0 +1,43 @@
+<li>
+  <div class="summary-card challenge-summary-card <%=challenge.challengeId%>card">
+    <div class="inner-wrapper">
+      <div class="summary-media summary-media-type-img">
+        <img src="<%=challenge.challenge.imgURL%>">
+      </div>
+      <div class="summary-content">
+        <h3 class="sml-text challenge-heading">
+          <%=challenge.challenge.title%>
+        </h3>
+        <p class="challenge-desc"><%=challenge.challenge.description%></p>
+        <div class="row-fluid actionbuttons">
+          <a id="<%=challenge.challengeId%>-done" onclick="trackChallenge(this.id)" class="span6 btn">
+            <span>
+              Did It
+            </span>
+          </a>
+          <a id="<%=challenge.id.toString()%>-complete" onclick="onChallengeCompleteClick(this.id)" class="span6 btn  btn-success">
+            Completed
+          </a>
+        </div>
+        <span id="xdatepicker" class="date-wrapper">
+          <p>
+            <%=date%>
+          </p>
+          <p>
+            <%=monthname%>
+          </p>
+          <p>
+            <%=dayname%>
+          </p>
+        </span>
+        <span id="<%=challenge.challengeId%>-date-selector" class="date-selector challenge">
+          <%- weekTimeLineHTML %>
+        </span>
+      </div>
+    </div>
+    <span class="labelx days-label">
+      <span id="<%=challenge.challengeId%>-days-text" class="days-text">
+      </span>
+    </span>
+  </div>
+</li>

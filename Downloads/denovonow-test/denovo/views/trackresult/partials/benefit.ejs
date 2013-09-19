@@ -1,0 +1,43 @@
+<li>
+  <div class="summary-card challenge-summary-card">
+    <div class="inner-wrapper">
+      <div class="summary-media summary-media-type-img">
+        <img src="<%=benefit.imgurl%>">
+      </div>
+      <div class="summary-content">
+        <h3 class="sml-text challenge-heading">
+          Signup now!
+        </h3>
+        <p class="challenge-desc">
+          <%=benefit.description%>
+        </p>
+        <div class="row-fluid actionbuttons">
+          <a id="<%=benefit.id.toString()%>" onclick="signUpForBenefit(this.id)" class="span6 btn btn-success">
+            <span>
+              Go to signup
+            </span>
+          </a>
+        </div>
+        <span class="skill-medallion-wrapper">
+          <span class="skill-medallion-border"></span>
+          <span class="skill-medallion">
+            <span class="skill-text"><%=benefit.point%></span>
+          </span>
+        </span>
+        <span id="xdatepicker" class="date-wrapper">
+          <% var date = new Date(benefit.endDate) %>
+          <p>
+            <%=date.getDate()%>
+          </p>
+          <p>
+            <%=months[date.getMonth()]%>
+          </p>
+          <p>
+            <%=week[date.getDay()]%>
+          </p>
+        </span>
+        <span class="medallion-shadow"></span>
+      </div>
+    </div>
+  </div>
+</li>

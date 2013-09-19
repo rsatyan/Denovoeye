@@ -1,0 +1,302 @@
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <div class="span3 avatar-box">
+            <div class="personal-image">
+                <img src="img/personal-info.png" class="avatar img-circle"> <br/>                     
+            </div>
+        </div>    
+        <ul id="dashboard-menu">            
+            <li>               
+                <a href="home">         
+                    <i class="icon-home"></i>            
+                    <span>Home</span>
+                </a>
+            </li>            
+            <li>
+                <a href="trackresult">
+                    <i class="icon-tasks"></i>
+                    <span>Tracker</span>
+                </a>
+            </li>
+            <li>               
+                <a href="redemptionitem">
+                    <i class="icon-trophy"></i>
+                    <span>Rewards</span>
+                </a>
+            </li>            
+            <li>
+                <a href="userchallenges">
+                    <i class="icon-dashboard"></i>
+                    <span>Challenges</span>
+                </a>
+            </li>                  
+            <li>
+                <a href="appointment">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>            
+                <a href="provider">
+                    <i class="icon-user-md"></i>
+                    <span>Providers</span>
+                </a>
+            </li>                        
+            <li>
+                <a href="profile">
+                    <i class="icon-cog"></i>
+                    <span>My Info</span>
+                </a>
+            </li>            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    
+
+  
+<!-- main container -->
+    <div class="content">
+        
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <h3>Providers</h3>
+                    <div class="span10 pull-right">
+                        <input type="text" class="span5 search" placeholder="Type a provider's name...">
+                        
+                        <!-- custom popup filter -->
+                        <!-- styles are located in css/elements.css -->
+                        <!-- script that enables this dropdown is located in js/theme.js -->
+                        <div class="ui-dropdown">
+                            <div class="head" data-toggle="tooltip" title="Click me!">
+                                Filter providers
+                                <i class="arrow-down"></i>
+                            </div>  
+                            <div class="dialog">
+                                <div class="pointer">
+                                    <div class="arrow"></div>
+                                    <div class="arrow_border"></div>
+                                </div>
+                                <div class="body">
+                                    <p class="title">
+                                        Show providers where:
+                                    </p>
+                                    <div class="form">
+                                        <select id="propertyType">
+                                            <option>Location</option>
+                                            <option>Speciality</option>               
+                                            <option>Plan</option>
+                                        </select>
+                                        <select id="comparator">
+                                            <option>is equal to</option>
+                                            <option>is not equal to</option>
+                                            <option>contains</option>
+                                        </select>
+                                        <input id="filter-text" type="text" />
+                                        <a onclick="filterAdded()" class="btn-flat small">Add filter</a>
+                                        <a onclick="reloadList()" class="btn-flat small">Reset</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+
+                <!-- Users table -->
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span4 sortable">
+                                    Name
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>Speciality
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>Plans accepted
+                                </th>
+                                <th class="span3 sortable align-right">
+                                    <span class="line"></span>Contact
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="providertable">
+                        <!-- row -->
+                        <% for (var  i=0; i < providers.length; i++) {%>
+                        <% var currentprovider = providers[i] %>
+                        <tr>
+                            <td>
+                                <img src="<%=currentprovider.imgurl%>" class="img-circle avatar hidden-phone" />
+                                <a href="/provider/<%=currentprovider.id.toString()%>" class="name">
+                                    <%=currentprovider.name%>
+                                </a>
+                                <span class="subtext">
+                                    <%=currentprovider.subtext%>
+                                </span>
+                            </td>
+                            <td>
+                                <%=currentprovider.speciality%>
+                            </td>
+                            <td>
+                                <%=currentprovider.plan%>
+                            </td>
+                            <td class="align-right">
+                                <a href="#"><%=currentprovider.phoneNumber%></a>
+                            </td>
+                        </tr>
+                        <%}%>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="pagination pull-right">
+                    <ul>
+                        <li><a href="#">&#8249;</a></li>
+                        <li><a class="active" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&#8250;</a></li>
+                    </ul>
+                </div> -->
+                <!-- end users table -->
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+    <!-- scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+    var objectProperty = {
+        'Location' :'location',
+        'Speciality' : 'speciality',
+        'Plan' : 'plan'
+    }
+
+    var filteredList = []
+    var providerlist = <%- JSON.stringify(providers) %>
+
+
+
+    var generateTableRow = function(currentprovider) {
+
+        var rowStart = "<tr>"
+        var rowEnd = "</tr>"
+        var nameColumn = '<td><img src="'+currentprovider.imgurl+'" class="img-circle avatar hidden-phone" /><a href="/provider/'+currentprovider.id.toString()+'" class="name">'+currentprovider.name+'</a><span class="subtext">'+currentprovider.subtext+'</span></td>'
+        var specialityColumn = '<td>'+currentprovider.speciality+'</td>'
+        var planColumn = '<td>'+currentprovider.plan+'</td>'     
+        var phoneNumberColumn  = '<td class="align-right"><a href="#">'+currentprovider.phoneNumber+'</a></td>'                    
+        return (rowStart+nameColumn+specialityColumn+planColumn+phoneNumberColumn);                       
+    }
+
+    var ReloadTable = function(list) {
+
+        var rows = ""
+        for (var i = 0; i < list.length; i++) {
+            var provider = list[i]
+            var singleRowhtml = generateTableRow(provider)
+            rows = rows + singleRowhtml
+        }
+        $('#providertable').html(rows)
+    }
+
+    var isEqualTo = function(property,value) {
+
+        for (var i=0; i < providerlist.length; i++) {
+            var currentprovider = providerlist[i]
+            console.log("provider property value "+currentprovider[property].toLowerCase())
+            if (currentprovider[property].toLowerCase() === value) filteredList.push(currentprovider)
+        }
+    }
+    var isNotEqualTo = function(property,value) {
+        for (var i=0; i < providerlist.length; i++) {
+            var currentprovider = providerlist[i]
+            console.log("provider property value "+currentprovider[property].toLowerCase())
+            if (currentprovider[property].toLowerCase() != value) filteredList.push(currentprovider)
+        }
+    }
+    var startsWith = function(property,value) {
+        var regex = "^"+value
+        var patt = new RegExp(regex,"i")
+        for (var i=0;i < providerlist.length;i++){
+            var currentprovider = providerlist[i]
+            console.log("provider property value "+currentprovider[property].toLowerCase())
+            if (patt.test(currentprovider[property].toLowerCase())) filteredList.push(currentprovider)
+        }
+    }
+    var contains = function(property,value) {
+        for (var i=0; i < providerlist.length; i++) {
+            var currentprovider = providerlist[i]
+            console.log("provider property value "+currentprovider[property].toLowerCase())
+            if (currentprovider[property].toLowerCase().search(value) != -1) filteredList.push(currentprovider)
+        }
+    }
+    var filterAdded = function() {
+
+        filteredList.length = 0
+
+        console.log('property type selector selected option: '+$('#propertyType :selected').val())
+
+        var filterByProperty = objectProperty[$('#propertyType :selected').val()]
+
+        console.log("filter property selected = "+filterByProperty)
+
+        var filterValue = $('#filter-text').val().toLowerCase()
+
+        var comparatorvalue = $('#comparator :selected').val()
+
+        if (comparatorvalue === 'is equal to') {
+            isEqualTo(filterByProperty,filterValue)
+        } else if (comparatorvalue === 'is not equal to') {
+            isNotEqualTo(filterByProperty,filterValue)
+        } else if (comparatorvalue === 'starts with') {
+            startsWith(filterByProperty,filterValue)
+        } else if (comparatorvalue === 'contains') {
+            contains(filterByProperty,filterValue)
+        }
+
+        return ReloadTable(filteredList)
+    }
+
+    var reloadList = function() {
+
+       filteredList.length = 0
+       for (var j = 0; j < providerlist.length;j++) {
+            filteredList.push(providerlist[j])
+        } 
+
+        return ReloadTable(filteredList)
+    }
+
+    $(function(){
+
+
+        reloadList()
+
+        $("#propertyType").val('Location');
+        $("#comparator").val('is equal to');
+
+        $(".search").keyup(function(e){
+
+            var searchstring = $(this).val();
+            if (searchstring === "") return ReloadTable(filteredList)
+
+            var searchResults = _.filter(filteredList, function(provider){
+             return  (provider.name.toLowerCase().search(searchstring.toLowerCase()) != -1)
+            }) 
+
+            return ReloadTable(searchResults)
+
+        }); 
+    })
+     
+    </script>
+
+</body>
+</html>

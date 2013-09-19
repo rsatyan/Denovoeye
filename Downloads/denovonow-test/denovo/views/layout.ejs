@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%- title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+	<!-- Stylesheets from your assets folder are included here -->
+	<%- assets.css() %>	
+	
+    <!-- bootstrap -->
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href='css/lib/fullcalendar.css' rel='stylesheet' />
+    <link href='css/lib/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <link rel="stylesheet" type="text/css" href="css/elements.css">
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+
+    <!-- this page specific styles -->
+
+
+    <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />    
+    <link rel="stylesheet" href="css/compiled/signin.css" type="text/css" media="screen" />    
+    <link rel="stylesheet" href="css/compiled/personal-info.css" type="text/css" media="screen" />    
+    <link rel="stylesheet" href="css/compiled/tracker.css" type="text/css" media="screen" />    
+    <link rel="stylesheet" href="css/compiled/rewards-list.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/calendar.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/timeline.css" type="text/css" media="screen" />
+
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- lato font -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/underscore-min.js"></script>
+    
+</head>
+<body>
+    <img id="imgAjaxLoader" class="ajaxLoader" src="img/ajax-loader.gif" />
+	<% if (req.isAuthenticated()) { %>
+    <!-- navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            <a class="brand" href="home"><img src="img/logo.png"></a>
+
+            <ul class="nav pull-right">                
+                <!-- <li class="hidden-phone">
+                    <input class="search" type="text" />
+                </li> -->
+                <li class="notification-dropdown hidden-phone">
+                    <a href="#" class="trigger">
+                        <i class="icon-warning-sign"></i>
+                        <span id="notificationCount" class="count"></span>
+                    </a>
+                    <div class="pop-dialog">
+                        <div class="pointer right">
+                            <div class="arrow"></div>
+                            <div class="arrow_border"></div>
+                        </div>
+                        <div class="body">
+                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                            <div class="notifications">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="notification-dropdown hidden-phone">
+                    <a href="#" class="trigger">
+                        <i class="icon-envelope-alt"></i>
+                    </a>
+                    <div class="pop-dialog">
+                        <div class="pointer right">
+                            <div class="arrow"></div>
+                            <div class="arrow_border"></div>
+                        </div>
+                        <div class="body">
+                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                            <div class="messages">
+                                <div class="footer">
+                                    <a href="#" class="logout">View all messages</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
+                        Your account
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="personal-info.html">Personal info</a></li>
+                        <li><a href="#">Account settings</a></li>
+                        <li><a href="#">Billing</a></li>
+                        <li><a href="#">Export your data</a></li>
+                        <li><a href="#">Send feedback</a></li>
+                    </ul>
+                </li>
+                <li class="settings hidden-phone">
+                    <a href="profile" role="button">
+                        <i class="icon-cog"></i>
+                    </a>
+                </li>
+                <li class="settings hidden-phone">
+                    <a onclick="logout()" role="button">
+                        <i class="icon-share-alt"></i>
+                    </a>
+                </li>
+            </ul>            
+        </div>
+    </div>
+    <!-- end navbar -->
+
+	<% } %>
+
+    <%- body %>
+
+		<!-- Templates from your view path are included here -->
+		<%- assets.templateLibrary() %>
+	    
+	    <!-- Stylesheets from public folder are included here -sandeep 13th june ends-->
+		<%- assets.js() %>
+         <script type="text/javascript">
+
+         $(function(){
+            var el = $('#main-stats')
+            if (el) {
+                $(el).css('position','fixed')
+                $(el).css('width','86%')
+                $(el).css('z-index',999)
+            }
+         });
+
+         $(window).scroll(function() {
+            var height = $(window).scrollTop();
+
+            if (height > 48) {
+                $('#main-stats').css('top','0');
+            }
+
+            if (height <= 48) {
+                $('#main-stats').css('top','48px');
+            }
+
+        });
+
+        var logout = function() {
+
+            var url = window.location.href;
+            window.history.go(-window.history.length);
+            window.location = "/logout";
+        }
+
+        var gotoLogin = function() {
+
+            if (window.location.pathname != "/login" && window.location.pathname != "/signup" && window.location.pathname != "/admin-login") {
+                window.location = "/login"
+            }
+        }
+
+        var updateNotification = function() {
+
+            $.get("/notification",function(data) {
+                $('#notificationCount').text(data.length.toString());
+                var headerHTML = "<h3>You have "+ data.length.toString() +" new notifications</h3>"
+                var footerHTML = "<div class=\"footer\"><a href=\"#\" class=\"logout\">View all notifications</a></div>"
+                var notificationList = "";
+                for (var i = 0; i < data.length; i++) {
+                    var notification = data[i]
+                    var now = new Date()
+                    var notificationDate = new Date(notification.createdAt)
+                    var diff = now.getTime() - notificationDate.getTime()
+                    var inMinutes = Math.round(((diff % 86400000) % 3600000) / 60000)
+
+                    notificationList = notificationList + "<a href=\"#\" class=\"item\"><i class=\"icon-signin\"></i> "+notification.message+"<span class=\"time\"><i class=\"icon-time\"></i>"+inMinutes+" min.</span></a>";
+                }
+                $('.notifications').html(headerHTML+notificationList+footerHTML);
+                setTimeout( "updateNotification()",10000);
+            }, "json");
+        }
+
+        <% if (req.isAuthenticated()) { %>
+            updateNotification();
+        <%} else { %>
+            gotoLogin();
+        <%} %> 
+          
+        </script>
+        
+        
+	</body>
+</html>

@@ -1,0 +1,374 @@
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <div class="span3 avatar-box">
+            <div class="personal-image">
+                <% var displayimg = "/img/displaypictures/default.png" %>
+                <% if(user.displayimg) displayimg = user.displayimg %>
+                <img id="displayimg" src="<%=displayimg%>" class="avatar img-circle">               
+            </div>
+        </div>    
+        <ul id="dashboard-menu">            
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="/home">                    
+                    <span>Home</span>
+                </a>
+            </li>            
+            <li>
+                <a href="trackresult">
+                    <i class="icon-tasks"></i>
+                    <span>Tracker</span>
+                </a>
+            </li>
+            <li>
+                <a href="/redemptionitem">
+                    <i class="icon-trophy"></i>
+                    <span>Rewards</span>
+                </a>
+            </li>            
+            <li>
+                <a href="userchallenges">
+                    <i class="icon-dashboard"></i>
+                    <span>Challenges</span>
+                </a>
+            </li>                  
+            <li>
+                <a href="appointment">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li>
+                <a href="provider">
+                    <i class="icon-user-md"></i>
+                    <span>Providers</span>
+                </a>
+            </li>                        
+            <li>
+                <a href="profile">
+                    <i class="icon-cog"></i>
+                    <span>My Info</span>
+                </a>
+            </li>            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+
+    <!-- main container -->
+    <div class="content">
+
+        <!-- settings changer -->
+        <!--div class="skins-nav">
+            <a href="#" class="skin first_nav selected">
+                <span class="icon"></span><span class="text">Default skin</span>
+            </a>
+            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
+                <span class="icon"></span><span class="text">Dark skin</span>
+            </a>
+        </div-->
+
+        <div class="container-fluid">
+
+            <!-- upper main stats -->            
+            <div id="main-stats">
+                <div class="row-fluid stats-row">                
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span class="denovogreen"><%= totalpoints %></span>
+                            POINTS
+                        </div>
+                        <span class="date">Overall</span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span class="number"><%= pointsforlastmonth %></span>
+                            POINTS
+                        </div>
+                        <span class="date">last 30 days</span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span class="number"><%= pointsforlastWeek %></span>
+                            POINTS
+                        </div>
+                        <span class="date">This week</span>
+                    </div>
+                    <div class="span3 stat last">
+                        <div class="data">
+                            <span class="number"><%= pointsfortoday %></span>
+                            POINTS
+                        </div>
+                        <span class="date">today</span>
+                    </div>
+                </div>
+            </div>
+            <!-- end upper main stats -->
+
+            <div id="pad-wrapper">
+             
+                <div class="row-fluid ui-elements">                    
+                   <h4>Recommended for you!</h4>
+                   <div class="w2y-widget-wrapper">
+                    <a class="w2y-widget blog-widget clickable-widget" href="/trackresult# diabetes">
+                        
+                        <div class="blog-title h3">
+                                DIABETES
+                        </div>
+                        <div class="blog-picture blog-health"></div>
+                        <div class="blog-content content-health h4 font23-medium-condensed">
+                            Health at 23andMe:
+                            What can you learn?
+                        </div>
+                        <div class="blog-action-wrapper">
+                            <span class="button round small snow shady">TRACK NOW!</span>
+                        </div>
+                    </a>
+                   </div>
+
+                   <div class="w2y-widget-wrapper">
+                    <a class="w2y-widget blog-widget clickable-widget" href="/trackresult# challenges">
+                        <div class="blog-completed"></div>
+                        <div class="blog-title h3">
+                                CHALLENGES
+                        </div>
+                        <div class="blog-picture blog-health"></div>
+                        <div class="blog-content content-health h4 font23-medium-condensed">
+                            Health at 23andMe:
+                            What can you learn?
+                        </div>
+                        <div class="blog-action-wrapper">
+                            <span class="button round small snow shady">TRACK NOW!</span>
+                        </div>
+                    </a>
+                   </div>
+                   
+
+                   <div class="w2y-widget-wrapper">
+                    <a class="w2y-widget blog-widget clickable-widget" href="/trackresult# lifestyle">
+                        <div class="blog-pending"></div>
+                        <div class="blog-title h3">
+                                LIFESTYLE
+                        </div>
+                        <div class="blog-picture blog-health"></div>
+                        <div class="blog-content content-health h4 font23-medium-condensed">
+                            Health at 23andMe:
+                            What can you learn?
+                        </div>
+                        <div class="blog-action-wrapper">
+                            <span class="button round small snow shady">TRACK NOW!</span>
+                        </div>
+                    </a>
+                   </div>
+                   
+                   <div class="w2y-widget-wrapper">
+                    <a class="w2y-widget blog-widget clickable-widget" href="/trackresult# dental">
+                        <div class="blog-warning"></div>
+                        <div class="blog-title h3">
+                                DENTAL
+                        </div>
+                        <div class="blog-picture blog-health"></div>
+                        <div class="blog-content content-health h4 font23-medium-condensed">
+                            Health at 23andMe:
+                            What can you learn?
+                        </div>
+                        <div class="blog-action-wrapper">
+                            <span class="button round small snow shady">TRACK NOW!</span>
+                        </div>
+                    </a>
+                   </div>
+                   
+
+                </div>   
+
+                <!-- statistics chart built with jQuery Flot -->
+                <div class="row-fluid section chart">
+                    <h4>
+                        Statistics (Points Earned vs Days Tracked)
+                         <div class="btn-group pull-right">
+                            <button id="dayButton" class="glow left" onclick="switchToDay()">DAY</button>
+                            <button id="monthButton" class="glow middle active" onclick="switchToMonth()">MONTH</button>
+                            <button id="yearButton" class="glow right" onclick="switchToYear()">YEAR</button>
+                        </div>
+                    </h4>
+                    <div class="span12">
+                        <div id="statsChart"></div>
+                    </div>
+                </div>
+                <!-- end statistics chart -->
+
+                <!-- leader board -->
+
+                <div class="row-fluid section ui-elements">
+                    <h4>Company Leaderboard</h4>
+                    
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    <!-- knob -->
+    <script src="js/jquery.knob.js"></script>
+    <!-- flot charts -->
+    <script src="js/jquery.flot.js"></script>
+    <script src="js/jquery.flot.stack.js"></script>
+    <script src="js/jquery.flot.resize.js"></script>
+    <script src="js/theme.js"></script>
+
+    <script type="text/javascript">
+    var plotChart = function(data,xAxisTick) {
+
+        var plot = $.plot($("#statsChart"),
+                [ { data: data, label: "Points"}], {
+                    series: {
+                        lines: { show: true,
+                                lineWidth: 1,
+                                fill: true, 
+                                fillColor: { colors: [ { opacity: 0.1 }, { opacity: 0.13 } ] }
+                             },
+                        points: { show: true, 
+                                 lineWidth: 2,
+                                 radius: 3
+                             },
+                        shadowSize: 0,
+                        stack: true
+                    },
+                    grid: { hoverable: true, 
+                           clickable: true, 
+                           tickColor: "#f9f9f9",
+                           borderWidth: 0
+                        },
+                    legend: {
+                            // show: false
+                            labelBoxBorderColor: "#fff"
+                        },  
+                    colors: ["#a7b5c5", "#30a0eb"],
+                    xaxis: {
+                        ticks: xAxisTick,
+                        font: {
+                            size: 12,
+                            family: "Open Sans, Arial",
+                            variant: "small-caps",
+                            color: "#697695"
+                        }
+                    },
+                    yaxis: {
+                        ticks:[50,100,250,500], 
+                        tickDecimals: 0,
+                        font: {size:12, color: "#9da3a9"}
+                    }
+                 });
+    }
+    </script>
+
+    <script>
+        var switchToDay = function() {
+                $("#dayButton").addClass("active");
+                $("#monthButton").removeClass("active");
+                $("#yearButton").removeClass("active"); 
+                plotChart(<%- daystat %>,<%- dayXAxis %>); 
+        }
+    </script>
+
+    <script>
+        var switchToYear = function() {
+                $("#yearButton").addClass("active");
+                $("#monthButton").removeClass("active");
+                $("#dayButton").removeClass("active"); 
+                plotChart(<%- yearstat %>,<%- yearXAxis %>); 
+        }
+    </script>
+
+     <script>
+        var switchToMonth = function() {
+            $("#monthButton").addClass("active");
+            $("#yearButton").removeClass("active");
+            $("#dayButton").removeClass("active"); 
+            plotChart(<%- monthstat %>,[[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], 
+                               [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]]);  
+        }
+    </script>
+
+
+    <script type="text/javascript">
+    
+        $(function () {
+
+            // jQuery Knobs
+            $(".knob").knob();
+
+
+
+            // jQuery UI Sliders
+            $(".slider-sample1").slider({
+                value: 100,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample2").slider({
+                range: "min",
+                value: 130,
+                min: 1,
+                max: 500
+            });
+            $(".slider-sample3").slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [ 40, 170 ],
+            });
+
+            
+
+            // jQuery Flot Chart
+            plotChart(<%- monthstat %>,[[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]]);
+
+            function showTooltip(x, y, contents) {
+                $('<div id="tooltip">' + contents + '</div>').css( {
+                    position: 'absolute',
+                    display: 'none',
+                    top: y - 30,
+                    left: x - 50,
+                    color: "#fff",
+                    padding: '2px 5px',
+                    'border-radius': '6px',
+                    'background-color': '#000',
+                    opacity: 0.80
+                }).appendTo("body").fadeIn(200);
+            }
+
+            var previousPoint = null;
+            $("#statsChart").bind("plothover", function (event, pos, item) {
+                if (item) {
+                    if (previousPoint != item.dataIndex) {
+                        previousPoint = item.dataIndex;
+
+                        $("#tooltip").remove();
+                        var x = item.datapoint[0].toFixed(0),
+                            y = item.datapoint[1].toFixed(0);
+
+                        var month = item.series.xaxis.ticks[item.dataIndex].label;
+
+                        showTooltip(item.pageX, item.pageY,
+                                    item.series.label + " of " + month + ": " + y);
+                    }
+                }
+                else {
+                    $("#tooltip").remove();
+                    previousPoint = null;
+                }
+            });
+
+        });
+    </script>
+

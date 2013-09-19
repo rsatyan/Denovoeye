@@ -1,0 +1,10 @@
+<p>Hi <%= user.name %>!</p>
+<p><b><%= client.name %></b> is requesting access to your account.</p>
+<p>Do you approve?</p>
+
+<form action="/oauth2/decision" method="post">
+  <div>
+  <input type="submit" value="Allow" id="allow" name="approve">
+  <input type="submit" value="Deny" name="cancel" id="deny">
+  </div>
+</form>

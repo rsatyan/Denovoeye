@@ -1,0 +1,265 @@
+<!-- sidebar -->
+<div id="sidebar-nav">
+    <div class="span3 avatar-box">
+        <div class="personal-image">
+            <% var displayimg = "/img/displaypictures/default.png" %>
+            <% if(user.displayimg) displayimg = user.displayimg %>
+            <img id="displayimg" src="<%=displayimg%>" class="avatar img-circle"></br>
+        </div>
+    </div>
+    <ul id="dashboard-menu">
+        <li>
+            <a href="home"> 
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="trackresult">
+                <i class="icon-tasks"></i>
+                <span>Tracker</span>
+            </a>
+        </li>
+        <li>
+            <a href="redemptionitem">
+                <i class="icon-trophy"></i>
+                <span>Rewards</span>
+            </a>
+        </li>
+        <li>
+            <a href="userchallenges">
+                <i class="icon-dashboard"></i>
+                <span>Challenges</span>
+            </a>
+        </li>
+        <li class="active">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
+            <a href="appointment">
+                <i class="icon-calendar-empty"></i>
+                <span>Appointments</span>
+            </a>
+        </li>
+        <li>
+            <a href="provider">
+                <i class="icon-user-md"></i>
+                <span>Providers</span>
+            </a>
+        </li>
+        <li>
+            <a href="profile">
+                <i class="icon-cog"></i>
+                <span>My Info</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- end sidebar -->
+
+<!-- main container -->
+<div class="content">
+    <div class="container-fluid">
+        <div id="pad-wrapper">
+            <div class="row-fluid">
+                <div class="span6">
+                    <h3>Upcoming Appointments</h3>
+                    <div id="upcomingappt"></div>
+                </div>
+                <div class="span6">
+                    <h3>Previous Appointments</h3>
+                    <div id="previousappt"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <br/>
+            <div class="container-fluid">
+                <h3>Create an Appointment</h3>
+                <hr/>
+                <div id="pad-wrapper">
+                    <div class="row-fluid calendar-wrapper">
+                        <div class="span12">
+                            <div id='calendar'>
+                            </div>
+                            <div class="new-event popup" style="display:none">
+                                <i class="close-pop table-delete"></i>
+                                <h5>New Appointment</h5>
+                                <div class="field">
+                                    Date:
+                                    <input id="apptdate" type="text" class="event-input" />
+                                </div>
+                                <div class="field">
+                                    Event:
+                                    <input id="apptdescription" type="text" class="event-input" />
+                                </div>
+                                <input onclick="createAppointment()" type="submit" value="Create" class="btn-glow primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main container -->
+
+<!-- scripts for this page -->
+    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/fullcalendar.min.js'></script>
+    <script src="js/theme.js"></script>
+    <!-- builds fullcalendar example -->
+    <script>
+    
+    var week = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
+    var month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+
+    var pad = function(number) {
+        return (number < 10 ? '0' : '') + number
+    }
+
+    var displayUpcomingEvents = function(events) {
+        // <p> <h5><b>Tue Aug 18th 2013</b></h5> 9:30 - 10:30 Dr Warrington ( Physical Visit )</p>
+        var eventshtml = "<ul>"        
+        for (var i = 0; i < events.length; i++) {
+            var appt = events[i]
+            var date = new Date(appt.date)
+            var enddate = new Date(appt.enddate) 
+
+            var dayname = week[date.getDay()]
+            var monthname = month[date.getMonth()]
+            var timeline = date.getHours()+":"+pad(date.getMinutes())+" - "+enddate.getHours()+":"+pad(enddate.getMinutes())
+
+            var html = '<li><p><h5><b>'+dayname+' '+monthname+''+date.getDate()+' '+date.getFullYear()+'</b></h5> '+timeline+' '+appt.description+'</p></li>'
+
+            eventshtml = eventshtml + html
+        }
+
+        eventshtml = eventshtml + "</ul>"
+        $('#upcomingappt').html(eventshtml)
+    }
+
+    var displayPreviousEvents = function(events) {
+        var eventshtml = "<ul>"        
+        for (var i = 0; i < events.length; i++) {
+            var appt = events[i]
+            var date = new Date(appt.date)
+            var enddate = new Date(appt.enddate) 
+
+            var dayname = week[date.getDay()]
+            var monthname = month[date.getMonth()]
+            var timeline = date.getHours()+":"+pad(date.getMinutes())+" - "+enddate.getHours()+":"+pad(enddate.getMinutes())
+
+            var html = '<li><p><h5><b>'+dayname+' '+monthname+''+date.getDate()+' '+date.getFullYear()+'</b></h5> '+timeline+' '+appt.description
+
+            var spantag = ""
+            if (appt.active) {
+                spantag = ' <span class="label label-error">Missed appointment</span></p></li>'
+            } else {
+                spantag = ' <span class="label label-success">Completed</span></p></li>'
+            }
+
+            eventshtml = eventshtml + html + spantag
+        }
+
+        eventshtml = eventshtml + "</ul>"
+        $('#previousappt').html(eventshtml)
+    }
+
+    var displayCalender = function(events) {
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'month,agendaWeek,agendaDay',
+                center: 'title',
+                right: 'today prev,next'
+            },
+            defaultView:'agendaWeek',
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end, allDay,jsEvent,view) {
+                console.log(jsEvent);
+                mouseX = jsEvent.pageX-300;
+                mouseY = jsEvent.pageY-300;
+                $('.new-event').css({'top':mouseY,'left':mouseX}).fadeIn('slow');
+                $('#apptdate').val(start + " -  " + end);
+            },
+            eventClick: function(event, jsEvent){
+                /*    var $clickedEvent = $(jsEvent.target);
+                    $(".new-event").fadeIn("fast");*/
+            },
+            editable: true,
+            events: events,
+            eventBackgroundColor: '#278ccf'
+        });
+    }
+
+    var updateAppointments = function() {
+        $.get("/userappointments",function(data) {
+
+            var events = []
+            var previousevents = []
+            var upcomingevents = []
+            var now = new Date()
+
+            for (var i=0; i < data.length; i++) {
+
+                var appointment = data[i]
+
+                var startdate = new Date(appointment.date)
+                var enddate = new Date(appointment.enddate) 
+
+                var obj = {
+                    title : appointment.description,
+                    start : startdate,
+                    url: '/appointment/'+appointment.id.toString(),
+                    end : enddate,
+                    allDay : false
+                }
+                
+                events.push(obj);
+
+                if (now.getTime() > enddate.getTime()) previousevents.push(appointment)
+
+                if(now.getTime() < startdate.getTime()) upcomingevents.push(appointment)
+
+            }
+            displayUpcomingEvents(upcomingevents)
+            displayPreviousEvents(previousevents)
+            displayCalender(events)
+        })
+    }
+
+    var createAppointment = function (){
+        var period = ($('#apptdate').val()).split('-')
+
+        var obj = {
+            "startdate" : period[0],
+            "enddate" : period[1],
+            "description" : $('#apptdescription').val(),
+            "notification" : "daily"
+        }
+
+        // alert(obj.description+",start="+obj.startdate+",end="+obj.enddate)
+
+        $.post("/appointment",obj,function(data){
+            $(".new-event").fadeOut("fast");
+            $('#calendar').empty()
+            updateAppointments()
+        }, "json");
+    }
+
+    $(function() {
+
+         // handler to close the new event popup just for displaying purposes
+        // more documentation for fullcalendar on http://arshaw.com/fullcalendar/
+            
+        $(".popup .close-pop").click(function () {
+            $(".new-event").fadeOut("fast");
+        });
+
+        updateAppointments()
+        
+    })
+    </script>

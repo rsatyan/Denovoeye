@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html class="login-bg">
+
+<body>
+
+    <div class="row-fluid login-wrapper">
+        <a href="index.html">
+            <img class="logo" src="img/logo-white.png">
+        </a>
+        
+        <div class="span4 box">
+            <div class="content-wrap">
+                <form action="/login"  autocomplete="off" method="post">
+                <h6>Log in</h6>                
+                <input class="span12" type="text" id="username" name="username" placeholder="E-mail address">
+                <input class="span12" type="password" id="password" name="password" placeholder="Your password">
+                <a href="#" class="forgot">Forgot password?</a>
+                <div class="remember">
+                    <input id="remember-me" type="checkbox">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <button class="btn-glow primary login">Log in</button>
+
+                <!-- <div class="row-fluid">
+                    <a href="/auth/twitter/" class="btn-glow btn-social btn-twitter span6">
+                    <i class="icon-twitter"> </i>Sign in with Twitter</a>                    
+                    <a href="/auth/facebook/" class="btn-glow btn-social btn-fb span6">
+                    <i class="icon-facebook"> </i>Sign in with Facebook</a>             
+                </div> -->
+                </form>
+            </div>
+        </div>    
+        <div class="span4 no-account">
+            <p>Don't have an account?</p>
+            <a href="/signup">Sign up</a>
+        </div>
+    </div>
+
+	<!-- scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>

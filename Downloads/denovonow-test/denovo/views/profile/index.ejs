@@ -1,0 +1,270 @@
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <div class="span3 avatar-box">
+            <div class="personal-image">
+                <img src="<%=displayimg%>" class="avatar img-circle"> <br/>                     
+            </div>
+        </div>    
+        <ul id="dashboard-menu">            
+            <li>                
+                <a href="index.html">  
+                	<i class="icon-home"></i>                   
+                    <span>Home</span>
+                </a>
+            </li>            
+            <li>
+                <a href="trackresult">
+                    <i class="icon-tasks"></i>
+                    <span>Tracker</span>
+                </a>
+            </li>
+            <li>
+                <a href="redemptionitem">
+                    <i class="icon-trophy"></i>
+                    <span>Rewards</span>
+                </a>
+            </li>            
+            <li>
+                <a href="userchallenges">
+                    <i class="icon-dashboard"></i>
+                    <span>Challenges</span>
+                </a>
+            </li>                  
+            <li>
+                <a href="appointment">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li>
+                <a href="provider">
+                    <i class="icon-user-md"></i>
+                    <span>Providers</span>
+                </a>
+            </li>                        
+            <li class="active">
+				<div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>            
+                <a href="profile">
+                    <i class="icon-cog"></i>
+                    <span>My Info</span>
+                </a>
+            </li>            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+
+
+	<!-- main container .wide-content is used for this layout without sidebar :)  -->
+    <div class="content wide-content">
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <!-- avatar column -->
+                <div class="span3 avatar-box">
+                    <div class="personal-image">
+                        <% var displayimg = "/img/displaypictures/default.png" %>
+                        <% if(user.displayimg) displayimg = user.displayimg %>
+                        <img id="displayimg" src="<%=displayimg%>" class="avatar img-circle">
+                        <p>Upload a different photo...</p>
+                        <input id="fileupload" type="file" name="displayImage" onchange="uploadnewimage()">
+                    </div>
+                </div>
+
+                <!-- edit form column -->
+                <div class="span7 personal-info">
+                    <h5 class="personal-title">Personal info</h5>
+
+                    <form>
+                        <div class="field-box">
+                            <label>First name:</label>
+                            <% var firstname = "" %>
+                            <% if (user.firstname) firstname = user.firstname %>
+                            <input id="firstname" class="span5 inline-input" type="text" value="<%=firstname%>" />
+                        </div>
+                        <div class="field-box">
+                            <label>Last name:</label>
+                            <% var lastname = "" %>
+                            <% if (user.lastname) lastname = user.lastname %>
+                            <input id="lastname" class="span5 inline-input" type="text" value="<%=lastname%>" />
+                        </div>
+                        <div class="field-box">
+                            <label>Company:</label>
+                            <% var company_name = "" %>
+                            <% if (user.company_name) company_name = user.company_name %>
+                            <input id="company_name" class="span5 inline-input" type="text" value="<%=company_name%>" />
+                        </div>
+                        <div class="field-box">
+                            <label>Email:</label>
+                            <% var email = "" %>
+                            <% if (user.email) email = user.email %>
+                            <input id="email" class="span5 inline-input" type="text" value="<%=email%>" />
+                        </div>
+                        <div class="field-box">
+                            <label>Time Zone:</label>
+                            <div id="timezonelist" class="ui-select">
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>Username:</label>
+                            <% var username = "" %>
+                            <% if (user.username) username = user.username %>
+                            <input id="username" class="span5 inline-input" type="text" value="<%=username%>" />
+                        </div>
+                        <div class="field-box">
+                            <label>Password:</label>
+                            <% var password = "" %>
+                            <% if (user.password) password = user.password %>
+                            <input id="password" class="span5 inline-input" type="password" value="" />
+                        </div>
+                        <div class="field-box">
+                            <label>Confirm password:</label>
+                            <input id="confirmpassword" class="span5 inline-input" type="password" value="" />
+                        </div>
+                        <div class="span6 field-box actions">
+                            <input type="button" onclick="updateprofile()" class="btn-glow primary" value="Save Changes">
+                            <span>OR</span>
+                            <input type="reset" onclick="reset()" value="Cancel" class="reset">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/jstz.min.js"></script>
+    <script>
+    var uploadnewimage = function(){
+        var file_data = $("#fileupload").prop("files")[0];   // Getting the properties of file from file field
+        var form_data = new FormData();                  // Creating object of FormData class
+        form_data.append("displayImage", file_data)              // Appending parameter named file with properties of file_field to form_data
+        $.ajax({
+            url: "/user/upload",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'POST',
+            beforeSend:function(){
+                $(".ajaxLoader").show();
+            },
+            complete:function(){
+                $(".ajaxLoader").hide();
+            },
+            success: function(response) {
+                if(response.success) {
+                    $('#displayimg').attr('src',response.url);
+                } else {
+                    alert(response.message)
+                }
+            }
+       })
+    }
+
+    var profileUI = function(userObj){
+        $('#firstname').val(userObj.firstname)
+        $('#lastname').val(userObj.lastname)
+        $('#company_name').val(userObj.company_name)
+        $('#email').val(userObj.email)
+        $('#username').val(userObj.username)
+        $('#password').val(userObj.password)
+        $('#confirmpassword').val(userObj.password)
+    }
+
+    var updateprofile = function() {
+        var password = $('#password').val()
+        var confirmpassword = $('#confirmpassword').val()
+
+        if (!(password === confirmpassword)) return alert('passwords dont match')
+
+        if (!$("#user_time_zone option:selected").length) return alert('select a timezone')
+
+        var timezonestring = $("#user_time_zone option:selected").text()
+        var timezoneoffset = $("#user_time_zone option:selected").attr("value")
+        
+        var firstname = $('#firstname').val()
+        var lastname = $('#lastname').val()
+        var company_name = $('#company_name').val()
+        var email = $('#email').val()
+        var username = $('#username').val()
+
+        if(firstname === "" || password === "" || confirmpassword === "" || lastname === "" || company_name === "" || email === "" || username === "") return alert('please do not leave any field blank')
+        /*
+        var firstname = req.param('firstname')
+        var lastname = req.param('lastname')
+        var company_name = req.param('companyname')
+        var email = req.param('email')
+        var username = req.param('username')
+        var password = req.param('password')
+        var timezonestring = req.param('timezone')
+        var timezoneoffset = req.param('offset')
+        */ 
+        $.ajax({
+            url: '/user/update',
+            type: 'PUT',
+            data: "firstname="+firstname+"&lastname="+lastname+"&companyname="+company_name+"&email="+email+"&username="+username+"&password="+password+"&timezone="+timezonestring+"&offset="+timezoneoffset,
+            beforeSend:function(){
+                $(".ajaxLoader").show();
+            },
+            complete:function(){
+                $(".ajaxLoader").hide();
+            },
+            success: function(data) {
+                if (!data.success) {
+                    alert(data.message)  
+                } 
+            }
+        });
+    }
+    
+    var reset = function(){
+        profileUI(<%- JSON.stringify(user) %>)
+    }
+
+    var pad = function(number) {
+        return (number < 10 ? '0' : '') + number
+    }
+
+    var displayTimeZoneList = function() {
+        var usertimezone = null
+        <% if (user.timeZoneString) {%>
+            usertimezone = <%- JSON.stringify(user.timeZoneString) %>
+        <%}%>
+        var timezonehtml = ''
+        var selecttag = '<select id="user_time_zone" name="user[time_zone]">'
+        timezonehtml = timezonehtml + selecttag
+        var closeselecttag = '</select>'
+        for (var key in jstz.olson.timezones) {
+            
+            var time = key.split(',')
+
+            var sign = "+"
+            if (time[0].indexOf("-") != -1) sign = "-"
+            var offsetMinutes = Number(time[0].replace("-",""))
+            var hours = Math.floor(offsetMinutes / 60.0)
+            var minutes = Math.floor(offsetMinutes%60.0)
+
+            var timezonestring = '(GMT '+sign+pad(hours)+":"+pad(minutes)+") "+jstz.olson.timezones[key];
+            var selected = ''
+            if (usertimezone != null && usertimezone === timezonestring) selected = 'selected="selected"'
+            var optiontag = '<option '+selected+' value="'+key+'">'+timezonestring+'</option>'
+
+            timezonehtml = timezonehtml + optiontag
+        }
+
+        timezonehtml = timezonehtml + closeselecttag
+        $('#timezonelist').html(timezonehtml)
+    }
+
+    $(function(){
+        displayTimeZoneList()                   
+    })
+    </script>

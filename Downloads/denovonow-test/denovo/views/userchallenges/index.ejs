@@ -1,0 +1,231 @@
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <div class="span3 avatar-box">
+            <div class="personal-image">
+                <% var displayimg = "/img/displaypictures/default.png" %>
+                <% if(user.displayimg) displayimg = user.displayimg %>
+                <img id="displayimg" src="<%=displayimg%>" class="avatar img-circle"></br>                     
+            </div>
+        </div>    
+        <ul id="dashboard-menu">            
+            <li>                
+                <a href="home">  
+                    <i class="icon-home"></i>                   
+                    <span>Home</span>
+                </a>
+            </li>            
+            <li>
+                <a href="trackresult">
+                    <i class="icon-tasks"></i>
+                    <span>Tracker</span>
+                </a>
+            </li>
+            <li>
+                <a href="redemptionitem">
+                    <i class="icon-trophy"></i>
+                    <span>Rewards</span>
+                </a>
+            </li>            
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>            
+                <a href="userchallenges">
+                    <i class="icon-dashboard"></i>
+                    <span>Challenges</span>
+                </a>
+            </li>                  
+            <li>
+                <a href="appointment">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li>
+                <a href="provider">
+                    <i class="icon-user-md"></i>
+                    <span>Providers</span>
+                </a>
+            </li>                        
+            <li>
+                <a href="profile">
+                    <i class="icon-cog"></i>
+                    <span>My Info</span>
+                </a>
+            </li>            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+    <!-- main container -->
+    <div class="content">
+                      
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="tracker">
+
+                <h3>Create a challenge</h3> <br><br>
+                <div class="row-fluid">
+                    <form>                           
+                            <div class="field-box span2">
+                                <label>Title:</label>
+                                <input id="challenge-title" class="inline-input span12" type="text" value="" />
+                            </div>
+                            <div class="field-box span4">
+                                <label>Description:</label>
+                                <input id="challenge-description" class="span12 inline-input" type="text" value="" />
+                            </div>
+                            <div class="field-box span2">
+                                <label>Due date:</label>
+                                <input id="challenge-date" type="text" value="03/29/2013" class="span12 input-large datepicker" />
+                            </div>                
+                            <div class="field-box span2">
+                                <label> Choose Image</label>
+                                <input id="fileupload" style="width: 0px;height: 0px;visibility:hidden" name="displayImage" type="file" value="choose file">
+                                <input id="upload-button" type="button" class="span10 btn-glow" value="Upload">
+                            </div>    
+                            <div class="field-box actions span2">
+                                <label>&nbsp;</label> 
+                                <input type="button" onclick="onCreatingNewChallenge()" class="span5 btn-glow primary" value="Add">                            
+                            </div>                                
+                    </form>
+                </div>
+                <br><br>    
+
+                <div class="row-fluid header">
+                    <h3>Or Pick a challenge</h3>                    
+                </div>
+
+                <!-- tracker wrapper -->
+                <div class="tracker-wrapper">
+                                       
+                </div>
+                <!-- end tracker wrapper -->                
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+    <!-- this page scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/bootstrap.datepicker.js"></script>
+    <script src="js/jstz.min.js"></script>
+
+      <!-- call this page plugins -->
+    <script type="text/javascript">
+
+        var generateHtmlForChallenge = function(challenge) {
+
+            var li = '<li class="span3">'
+            var div1 = '<div class="thumbnail">'
+            var img = '<img src="'+challenge.imgURL+'" alt="">'
+            var div2 = '<div class="caption">'
+            var h3 = '<h3 class="sml-text challenge-heading">'+challenge.title+'</h3>'
+            var descp = '<p>'+challenge.description+'</p>'
+            var div4 = '<div class="row-fluid"><button type="button" id="'+challenge.id.toString()+'" onclick="onAddingChallenge(this.id)" class="span6 offset3 btn btn-success">Add</button></div>'
+            var div2close = '</div>'
+            var div1close = '</div>'
+            var liclose = '</li>'
+
+            var html = [li,div1,img,div2,h3,descp,div4,div2close,div1close,liclose]
+            return html.join('')
+        }
+
+        var loadChallenges = function(challenges) {
+
+            var completehtml = ''
+            
+            for (var i=0; i < challenges.length;i = i + 3) {
+
+                var starthtml = '<div class="row tracker-row"><ul class="thumbnails">'
+                var endhtml = '</ul></div>'
+
+                completehtml = completehtml + starthtml
+                
+                var limit = i + 3
+                if (limit > challenges.length) limit = challenges.length
+
+                for (var j = i;j < limit; j++) {
+                    var challenge = challenges[j]
+                    var challengehtml = generateHtmlForChallenge(challenge)
+                    completehtml = completehtml + challengehtml
+                }
+
+                completehtml = completehtml + endhtml
+
+            }
+
+            $('.tracker-wrapper').html(completehtml)
+        }
+
+        $(function () {
+
+            $('#upload-button').click(function(){
+                $('#fileupload').click()
+            })
+
+            // datepicker plugin
+            $('.datepicker').datepicker().on('changeDate', function (ev) {
+                $(this).datepicker('hide');
+            });
+
+            // add challenges list
+            var arr = <%- challenges %>
+            
+            loadChallenges(arr)
+
+        });
+
+        var onCreatingNewChallenge = function() {
+
+            var description = $('#challenge-description').val()
+            var date = $('#challenge-date').val()
+            var title = $('#challenge-title').val()
+
+            if (description === ""  || date === "" || title === "") return alert('please do not leave the above fields blank')
+
+            if ($("#fileupload").prop("files").length == 0) return alert('please select/upload an image for the challenge')
+
+            var file_data = $("#fileupload").prop("files")[0];   // Getting the properties of file from file field
+            var form_data = new FormData();                  // Creating object of FormData class
+            form_data.append("displayImage", file_data)              // Appending parameter named file with properties of file_field to form_data
+            $.ajax({
+                url: "/userchallenges?endDate="+date+"&title="+title+"&description="+description,
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'POST',
+                beforeSend:function(){
+                    $(".ajaxLoader").show();
+                },
+                complete:function(){
+                    $(".ajaxLoader").hide();
+                },
+                success: function(response) {
+                }
+            })
+        }
+
+        var onAddingChallenge = function(challengeId) {
+
+            var timezone = jstz.determine()
+            $.ajax({
+                url: "/userchallenges/add/challenge/"+challengeId+"?timezone="+timezone.name(),
+                type: 'POST',
+                beforeSend:function(){
+                    $(".ajaxLoader").show();
+                },
+                complete:function(){
+                  $(".ajaxLoader").hide();
+                },
+                success: function(response) {
+                  location.reload(false);
+                }
+            });
+            
+        }
+    </script>

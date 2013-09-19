@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html class="login-bg">
+
+<body>
+
+<div class="row-fluid login-wrapper">
+        <a href="index.html">
+            <img class="logo" src="img/logo-white.png">
+        </a>
+	<div class="span4 box" >
+	  <div class="content-wrap">
+	  	<form action="/signup"  autocomplete="off" method="post">
+		 	<h6>Sign Up</h6>   
+			<input  id="name" type="text" name="name" placeholder="Name"/><br/>
+			<input  id="username" type="text" name="username" placeholder="email address"/><br/>
+			<input  id="password" type="password" name="password" placeholder="password"/></br>
+			<input class="btn-glow primary login" onclick="signup()" type="button" value="Sign Up"/>
+            <div class="remember">
+                    <input id="termsandconditions" type="checkbox">
+                    <a href="http://www.denovonow.com/terms.html">By singing up for an account you agree to comply with the terms & conditions</a>
+            </div>
+            <div id="error-label"  style="display:none;">
+                <label><font face="helvetica" color="red">In order to use our services, you must agree to Denovo Terms of Service.</font></label>
+            </div>
+		</form>
+	  </div>
+	</div>
+</div>
+
+	<!-- scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+    var signup = function(){
+
+    	var name = $('#name').val()
+    	var username = $('#username').val()
+    	var password = $('#password').val()
+
+    	if (username === "" || name === "" || password === "") 
+    		return alert("please do not leave any field blank")
+
+        var checked = $("#termsandconditions").is(":checked")
+
+        if (!checked) {
+            return $('#error-label').show()
+        }
+
+    	var obj = {
+    		"username" : username,
+    		"password" : password,
+    		"name" : name
+    	}
+
+    	$(".ajaxLoader").show()
+
+    	$.post("/signup",obj,function(data){
+		    $(".ajaxLoader").hide()
+		    alert(data.message)
+		}, "json");
+
+    }
+    </script>
+ 

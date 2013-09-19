@@ -1,0 +1,169 @@
+<script src="js/tracker.js"></script>
+
+<!-- sidebar -->
+<div id="sidebar-nav">
+  <div class="span3 avatar-box">
+    <div class="personal-image">
+      <% var displayimg = "/img/displaypictures/default.png" %>
+      <% if(user.displayimg) displayimg = user.displayimg %>
+      <img id="displayimg" src="<%=displayimg%>" class="avatar img-circle"></br>
+    </div>
+  </div>
+  <ul id="dashboard-menu">
+    <li>
+      <a href="home">
+        <i class="icon-home"></i>
+        <span>Home</span>
+      </a>
+    </li>
+    <li class="active">
+      <div class="pointer">
+        <div class="arrow"></div>
+        <div class="arrow_border"></div>
+      </div>
+      <a href="trackresult">
+        <i class="icon-tasks"></i>
+        <span>Tracker</span>
+      </a>
+    </li>
+    <li >
+      <a href="redemptionitem">
+        <i class="icon-trophy"></i>
+        <span>Rewards</span>
+      </a>
+    </li>
+    <li>
+      <a href="userchallenges">
+        <i class="icon-dashboard"></i>
+        <span>Challenges</span>
+      </a>
+    </li>
+    <li>
+      <a href="appointment">
+        <i class="icon-calendar-empty"></i>
+        <span>Appointments</span>
+      </a>
+    </li>
+    <li>
+      <a href="provider">
+        <i class="icon-user-md"></i>
+        <span>Providers</span>
+      </a>
+    </li>
+    <li>
+      <a href="profile">
+        <i class="icon-cog"></i>
+        <span>My Info</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- end sidebar -->
+
+<!-- main container -->
+<div class="content">
+  <div class="container-fluid">
+    <!-- upper main stats -->
+    <div id="main-stats">
+      <div class="row-fluid stats-row">
+        <div class="span3 stat">
+          <div class="data">
+            <span id="totalpoints" class="denovogreen"></span>
+            POINTS
+          </div>
+          <span class="date">Overall</span>
+        </div>
+        <div class="span3 stat">
+          <div class="data">
+            <span id="pointsForMonth" class="number"></span>
+            POINTS
+          </div>
+          <span class="date">last 30 days</span>
+        </div>
+        <div class="span3 stat">
+          <div class="data">
+            <span id="pointsForWeek" class="number"></span>
+            POINTS
+          </div>
+          <span class="date">This week</span>
+        </div>
+        <div class="span3 stat last">
+          <div class="data">
+            <span id="pointsForToday" class="number"></span>
+            POINTS
+          </div>
+          <span class="date">today</span>
+        </div>
+      </div>
+    </div>
+    <!-- end upper main stats -->
+    <div id="pad-wrapper" class="tracker">
+      <!-- tracker wrapper -->
+      <div class="tracker-wrapper">
+        <% var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'] %>
+        <% var d = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] %>
+        <% var today = new Date() %>
+        <% var monthName = m[today.getMonth()] %>
+        <% if (benefits.length > 0) { %>
+        <h3> Benefits </h3><hr/>
+        <div class="row tracker-row">
+          <ul class="inline-list skill-challenges-list">
+          <% for (var i=0; i < benefits.length; i++) {%>
+          <% var currentBenefit  = benefits[i] %>
+          <%- partial('partials/benefit',{week:d,months:m,benefit:currentBenefit}) %>
+          <%}%>
+          </ul>
+        </div>
+        <%}%>        
+        <% if(challenges.length > 0) { %>
+        <a name="challenges"></a>
+        <h3> Current Challenges </h3><hr/>        
+        <div class="row tracker-row">
+          <ul class="inline-list skill-challenges-list">
+            <% for(var i=0; i< challenges.length;i++) {%>
+            <% var currentChallenge = challenges[i] %>
+            <%- partial('partials/challenge',{
+              challenge:currentChallenge,
+              monthname:monthName,
+              date:todayObject.date,
+              dayname : todayObject.name
+            }) %>
+            <% }%>
+          </ul>
+        </div>
+        <%} %>
+        <% for (var key in questions) { %>
+        <h3> <%= key %> </h3><a name=" <%= key %>"></a><hr/>    
+        <div class="row tracker-row">
+          <ul class="inline-list skill-challenges-list">
+            <% var questionsArray = questions[key] %>
+            <% for (var i = 0; i < questionsArray.length; i++) { %>
+            <% var question = questionsArray[i].Question %>
+            <%- partial('partials/card',{
+              question:question,
+              monthName:monthName,
+              date:todayObject.date,
+              dayname : todayObject.name
+            }) %>
+            <%}%>
+          </ul>
+        </div>
+        <%} %>
+      </div>
+       <!-- end tracker wrapper -->
+     </div>
+   </div>
+ </div>
+ <!-- end main container -->
+
+ <!-- this page scripts -->
+ <script src="js/bootstrap.min.js"></script>
+ <script src="js/theme.js"></script>
+ <script>
+ $(function(){
+  updateStat()
+  bindTextFieldInputs()  
+  updateQuestions(<%- qArray %>)
+  updateChallenges(<%- JSON.stringify(challenges) %>)
+ })
+ </script> 

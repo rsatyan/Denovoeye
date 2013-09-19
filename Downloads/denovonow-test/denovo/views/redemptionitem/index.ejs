@@ -1,0 +1,297 @@
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <div class="span3 avatar-box">
+            <div class="personal-image">
+                <% var displayimg = "/img/displaypictures/default.png" %>
+                <% if(user.displayimg) displayimg = user.displayimg %>
+                <img id="displayimg" src="<%=displayimg%>" class="avatar img-circle"></br>                     
+            </div>
+        </div>    
+        <ul id="dashboard-menu">            
+            <li>               
+                <a href="home">         
+                    <i class="icon-home"></i>            
+                    <span>Home</span>
+                </a>
+            </li>            
+            <li>
+                <a href="trackresult">
+                    <i class="icon-tasks"></i>
+                    <span>Tracker</span>
+                </a>
+            </li>
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="redemptionitem">
+                    <i class="icon-trophy"></i>
+                    <span>Rewards</span>
+                </a>
+            </li>            
+            <li>
+                <a href="userchallenges">
+                    <i class="icon-dashboard"></i>
+                    <span>Challenges</span>
+                </a>
+            </li>                  
+            <li>
+                <a href="appointment">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li>
+                <a href="provider">
+                    <i class="icon-user-md"></i>
+                    <span>Providers</span>
+                </a>
+            </li>                        
+            <li>
+                <a href="profile">
+                    <i class="icon-cog"></i>
+                    <span>My Info</span>
+                </a>
+            </li>            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+    
+
+    <!-- main container -->
+    <div class="content">
+        
+        <div class="container-fluid">
+
+           <!-- upper main stats -->
+            <div id="main-stats">
+                <div class="row-fluid stats-row">
+                   <div class="span3 stat">
+                        <div class="data">
+                            <span id="totalpoints" class="denovogreen"></span>
+                            POINTS
+                        </div>
+                        <span class="date">Overall</span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span id="pointsForMonth" class="number"></span>
+                            POINTS
+                        </div>
+                        <span class="date">last 30 days</span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span id="pointsForWeek" class="number"></span>
+                            POINTS
+                        </div>
+                        <span class="date">This week</span>
+                    </div>
+                    <div class="span3 stat last">
+                        <div class="data">
+                            <span id="pointsForToday" class="number"></span>
+                            POINTS
+                        </div>
+                        <span class="date">today</span>
+                    </div>
+                </div>
+            </div>
+            <!-- end upper main stats -->
+
+            <div class="row-fluid sweepstake">
+                    </br>
+                    <% if (sweepstakes.length > 0) { %>
+                    <h3 class="header">Play to win!</h3>
+                    <%}%>
+                    <ul>
+                       <% for(var i = 0; i < sweepstakes.length; i++) {%>
+
+                            <% var currentSweepStake = sweepstakes[i] %>
+                            <li class="size-web_480 clips-1" data-id="001vbw" data-maker="astro" data-favorited="0">
+                                <div class="thumb">
+                                    <a href="/astro/001vbw" target="_top">
+                                        <img src="<%=currentSweepStake.sweepStake.imgurl%>">
+                                    </a>
+                                </div>
+                                <div class="meta">
+                                    <span class="stats">
+                                        <span class="ctrl-favorites">
+                                            <span id="<%=currentSweepStake.sweepstakeID%>-counter" class="count">
+                                                <span class="hour"></span>
+                                                <span class="min"></span>
+                                                <span class="sec"></span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <a href="/astro">
+                                        <img src="img/tracker/ribbon.png" alt="" class="avatar hover-stats">
+                                    </a>
+                                    <span class="title"><%=currentSweepStake.sweepStake.description%></span>
+                                    <span id="<%=currentSweepStake.sweepstakeID%>-redeemCount" class="by">0 Total redeemed</span>
+                                    <% if (currentSweepStake.sweepStake.cost <= user.rewardpoints) { %>
+                                        <div class="row-fluid actionbuttons">
+                                            <button id="<%=currentSweepStake.sweepstakeID%>" type="button" onclick="OnRedeemButtonClicked(this.id)" class="span6 offset6 btn btn-success">Redeem Now!</button>
+                                        </div>  
+                                    <%}%> 
+
+                                </div>
+                                <div class="awards">                                
+                                </div>
+                            </li>
+                       <% } %>
+                    </ul>                   
+
+                </div>
+
+            <div id="pad-wrapper" class="users-list">
+                <div class="row-fluid header">
+                    <% if (redemptionItems.length > 0) { %>
+                    <h3>Rewards</h3>
+                    <%}%>
+                </div>
+
+                <!-- Users table -->
+                <div class="row-fluid table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="span4 sortable">
+                                    Name
+                                </th>
+                                <th class="span3 sortable">
+                                    <span class="line"></span>Value Available
+                                </th>
+                                <th class="span2 sortable">
+                                    <span class="line"></span>Redeem
+                                </th>                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- row -->
+                        <tr class="first">
+                        <% for (var i = 0;i < redemptionItems.length;i++) { %>
+                            <%  var item = redemptionItems[i]  %>
+                             <td>
+                                <img src="<%= item.imageurl %>" class="img-circle avatar hidden-phone" />
+                                <a href="user-profile.html" class="name"><%= item.title %></a>
+                                <span class="subtext"><%= item.description %></span>
+                            </td>
+                            <td><%= item.points %></td>
+                            <td>
+                            <%if (user.rewardpoints >= item.points) { %>
+                                <button type="button" id="<%=item.id.toString()%>" class="btn-flat inverse" onclick="onRewardRedeemButtonClicked(this.id)">Redeem</button></td> 
+                            <%} else {%>
+                                <% var percent = Math.floor((user.rewardpoints/item.points)*100); %>
+                                <div style="width:40%" class="progress progress-striped">
+                                    <div class="bar" style="width: <%=percent%>%;"></div>
+                                </div>
+                            <%}%>
+                            </td>  
+                            
+                        </tr>
+                        <% } %>                      
+                        </tbody>
+                    </table>
+                </div>
+                <!--
+                <div class="pagination pull-right">
+                    <ul>
+                        <li><a href="#">&#8249;</a></li>
+                        <li><a class="active" href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&#8250;</a></li>
+                    </ul>
+                </div>
+                -->
+                <!-- end users table -->
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+    <!-- scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/timer.js"></script>
+
+    <script>
+
+    var updateRedeemButtons = function(totalpoints) {
+
+        var array = <%- jSweepstakes %>
+        for (var i=0; i < array.length; i++) {
+            var sweepstake = array[i]
+            if (sweepstake.cost > totalpoints) $('#'+sweepstake.sweepstakeID).hide()
+        }
+
+    }
+
+    var updateStat = function() {
+
+        $.get("/userpoints",function(data){
+
+            $('#totalpoints').text(''+data.totalPoints)
+            $('#pointsForMonth').text(''+data.pointsForLastMonth)
+            $('#pointsForWeek').text(''+data.pointsForLastWeek)
+            $('#pointsForToday').text(''+data.pointsForToday)
+
+            updateRedeemButtons(totalpoints)
+
+        }, "json");
+
+    }
+
+    var OnRedeemButtonClicked = function(sweepstakeId) {
+
+        $.post("/ticket?sweepstakeID="+sweepstakeId,function(data){
+            
+            updateStat()
+                
+            $.get("/ticket/count?sweepstakeID="+sweepstakeId,function(data){
+                if (data.success == true) {
+                   $('#'+sweepstakeId+'-redeemCount').text(data.count+' Total redeemed')
+                }
+            }, "json");
+
+        }, "json");
+    }
+
+    var onRewardRedeemButtonClicked = function(redeemItemId) {
+
+        $.get("/redeem/item/"+redeemItemId,function(data){
+            
+            updateStat()
+
+        }, "json");
+
+    }
+     $(document).ready(function(){     
+        // Start countdown timer!!
+        updateStat()
+
+        var array = <%- jSweepstakes %>
+        for (var i=0; i < array.length; i++) {
+            var sweepstake = array[i]
+            
+            var date = new Date(sweepstake.sweepStake.endDate)
+            var now = new Date()
+            var diff = date.getTime() - now.getTime()
+            var timer =  new Timer($('#'+sweepstake.sweepstakeID+'-counter'),diff);
+
+            $('#'+sweepstake.sweepstakeID+'-redeemCount').hide()
+                
+            $.get("/ticket/count?sweepstakeID="+sweepstake.sweepstakeID,function(data){
+                if (data.success == true) {
+                   $('#'+sweepstake.sweepstakeID+'-redeemCount').show()
+                   $('#'+sweepstake.sweepstakeID+'-redeemCount').text(data.count+' Total redeemed')
+                }
+            }, "json");
+        }     
+                
+    });
+    </script>

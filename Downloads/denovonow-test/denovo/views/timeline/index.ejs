@@ -1,0 +1,102 @@
+ <!-- sidebar -->
+    <div id="sidebar-nav">
+        <div class="span3 avatar-box">
+            <div class="personal-image">
+                <% var displayimg = "/img/displaypictures/default.png" %>
+                <% if(user.displayimg) displayimg = user.displayimg %>
+                <img id="displayimg" src="<%=displayimg%>" class="avatar img-circle"></br>                    
+            </div>
+        </div>    
+        <ul id="dashboard-menu">            
+            <li>               
+                <a href="home">
+                    <i class="icon-home"></i>                     
+                    <span>Home</span>
+                </a>
+            </li>            
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="trackresult">
+                    <i class="icon-tasks"></i>
+                    <span>Tracker</span>
+                </a>
+            </li>
+            <li >                
+                <a href="redemptionitem">
+                    <i class="icon-trophy"></i>
+                    <span>Rewards</span>
+                </a>
+            </li>            
+            <li>
+                <a href="userchallenges">
+                    <i class="icon-dashboard"></i>
+                    <span>Challenges</span>
+                </a>
+            </li>                  
+            <li>
+                <a href="appointment">
+                    <i class="icon-calendar-empty"></i>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li>
+                <a href="provider">
+                    <i class="icon-user-md"></i>
+                    <span>Providers</span>
+                </a>
+            </li>                        
+            <li>
+                <a href="profile">
+                    <i class="icon-cog"></i>
+                    <span>My Info</span>
+                </a>
+            </li>            
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+	<!-- main container -->
+    <div class="content">
+                      
+        <div class="container-fluid">
+            <div id="pad-wrapper" class="tracker">
+                <div class="row-fluid header">
+                    <h3>Tracking Timeline</h3>                    
+                </div>
+
+                <!-- tracker wrapper -->
+                <div class="tracker-wrapper">
+                    <div class="row tracker-row span8">
+
+        	           <ul class="tmtimeline">
+                       <% for (var i = 0;i < timeline.length; i++) { %>
+                            <% var event = timeline[i]; %>
+                            <% var date = new Date(event.createdAt) %>
+                             <li>
+                                <time class="tmtime" datetime="<%= event.createdAt %>">
+                                  <span><%= date.toDateString() %></span> <span><%= date.toLocaleTimeString()%> </span>
+                                </time>
+                                <div class="tmicon tmicon-phone"></div>
+                                <div class="tmlabel">
+                                    <h2><%= event.Question.description %></h2>
+                                    <p>Was rewarded <%=  event.reward %> points</p>
+                                </div>
+                             </li>
+                        <% } %>
+					
+			            </ul>
+			         </div>
+                </div>
+                <!-- end tracker wrapper -->                
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+    <!-- this page scripts -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
