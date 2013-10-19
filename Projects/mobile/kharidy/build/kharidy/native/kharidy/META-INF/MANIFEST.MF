@@ -1,0 +1,240 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0_51 (Apple Inc.)
+
+Name: res/drawable-xhdpi/ic_launcher.png
+SHA1-Digest: UCzYT6RE8m1+z99KNVBkhnl38jY=
+
+Name: assets/resources/images/close_gallery.png
+SHA1-Digest: yck18l/SjUspSu8Blparh22bA9A=
+
+Name: assets/resources/fonts/diy-regular_1-webfont.woff
+SHA1-Digest: oqXgxLK0q/eEDVCb3J5rLUyAZ94=
+
+Name: assets/resources/fonts/opensans-light-webfont.woff
+SHA1-Digest: OlfPj+UMK/mVF9wKfpoKmgQFx/Q=
+
+Name: assets/resources/startup/748x1024.png
+SHA1-Digest: fri7XbqxDW0SWc1PSeXGw0iktZ0=
+
+Name: assets/resources/images/marker.png
+SHA1-Digest: 9wHxHLS0sX5l/0CemSjmIZ4oMGM=
+
+Name: assets/resources/fonts/diy-regular_1-webfont.eot
+SHA1-Digest: nyG4oSTiz8XjCefrC235s0rKWSk=
+
+Name: assets/resources/fonts/opensans-light-webfont.eot
+SHA1-Digest: W6j9x54dARJ2eRaXbQti1Hppu2s=
+
+Name: assets/resources/images/earth.png
+SHA1-Digest: u/tp3OlGfd2Lv7RtONHTcvtZp7c=
+
+Name: res/drawable-ldpi/icon.png
+SHA1-Digest: 2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+
+Name: assets/resources/startup/1536x2008.png
+SHA1-Digest: HdViW30ecYJb04wAOjrlX2F6Ohs=
+
+Name: res/drawable-mdpi/icon.png
+SHA1-Digest: 2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+
+Name: assets/resources/fonts/opensans-light-webfont.svg
+SHA1-Digest: cN2Pv1zMi0VY2rLVvB9IUs1s/qg=
+
+Name: assets/resources/images/icon844.png
+SHA1-Digest: x71b6ZK1e1nOH+yRX+T0vRMLk9Q=
+
+Name: assets/resources/icons/iTunesArtwork.png
+SHA1-Digest: 60WHPCGphz1frdRwyA3UXnQY0ik=
+
+Name: assets/resources/images/login.png
+SHA1-Digest: /oIROqqQe8DAeXRJMWcOpTx7HCQ=
+
+Name: assets/resources/icons/Icon~ipad@2x.png
+SHA1-Digest: Tyhz9+5LEmQcoIsqbVrwRPf86I0=
+
+Name: assets/resources/images/full_star.png
+SHA1-Digest: 1f3MJ5cXOohg/MyKYE+/KGG3AKk=
+
+Name: assets/app.json
+SHA1-Digest: YUrNKUGiTsBZ/1SXmDMqY9e+Cl0=
+
+Name: assets/resources/images/default_product.png
+SHA1-Digest: Q8qFrZffQxIj+WAvzT1gFo7CUK4=
+
+Name: assets/resources/icons/Icon~ipad.png
+SHA1-Digest: x09WdZggbvyyyq9kHgkCaiLps+c=
+
+Name: res/layout/main.xml
+SHA1-Digest: qeGCiBlaNT7wJ0sxBhnC0rVHk2M=
+
+Name: assets/resources/images/wand.png
+SHA1-Digest: HPprAvWlOC9yP7HmnkURlRQnSpk=
+
+Name: assets/resources/css/app.css
+SHA1-Digest: lNtQw/6XNyTnCv8U1poCFZCa3g8=
+
+Name: assets/resources/images/user.png
+SHA1-Digest: 2fN7Nvja7Mc4mMLeWhkJKtB4W6s=
+
+Name: assets/resources/fonts/raleway-thin-webfont.eot
+SHA1-Digest: qSquirRDQ5b0b+clPfSW/6fmdWo=
+
+Name: assets/resources/images/splashimg.png
+SHA1-Digest: vxm7FjTBycloidMj/v9Lpi3XjHo=
+
+Name: assets/resources/fonts/raleway-thin-webfont.svg
+SHA1-Digest: 4/llTCXKXZwYyI2vYsB/d67Ybl4=
+
+Name: assets/resources/images/arrow-left.png
+SHA1-Digest: pKUw31pjTG+djMzZRWPRCKc+a2s=
+
+Name: assets/resources/fonts/opensans-regular-webfont.woff
+SHA1-Digest: UNp00rRrr6oDWzVeF9+Vmdcqd20=
+
+Name: assets/resources/fonts/opensans-bold-webfont.svg
+SHA1-Digest: f2aPhRXq2GSXTwTw8y9WlFKQxZE=
+
+Name: assets/resources/fonts/opensans-regular-webfont.svg
+SHA1-Digest: 7BCGg+iyCooMC1IBRbWADxF4l74=
+
+Name: assets/resources/images/notification.png
+SHA1-Digest: 3NqTw7sXsIiUAX2K35Y/GHquLbA=
+
+Name: res/drawable-hdpi/ic_launcher.png
+SHA1-Digest: RQ09RDJf3yWYEKYOavo2ED4Yaz0=
+
+Name: assets/app.js
+SHA1-Digest: up/RJMHUAzgesD0fW8HKOkj5+tQ=
+
+Name: assets/resources/images/eye.png
+SHA1-Digest: PgOod5OLnUrMYD+jukO7fQu0Qqw=
+
+Name: assets/resources/images/camera.png
+SHA1-Digest: 9smVGVNYiShf1FElk+mSWdqH1Io=
+
+Name: assets/resources/fonts/opensans-bold-webfont.woff
+SHA1-Digest: ZoVSBa6GtK1+ujtlp1d2aPVIxrU=
+
+Name: assets/resources/images/add.png
+SHA1-Digest: 6Pv7mUPLY7U163tpqL7wTp7tiHk=
+
+Name: assets/resources/images/envelope.png
+SHA1-Digest: Z4M8KRoexX7jiZnsW/aoqPKC9PU=
+
+Name: resources.arsc
+SHA1-Digest: L5/NeoZL4G21xGKVlsHm+TSCkjc=
+
+Name: assets/resources/images/arrow-up.png
+SHA1-Digest: t2ajrXsiCCFcWU1XPJtmdKGIs+g=
+
+Name: assets/index.html
+SHA1-Digest: GecXCfdPoWZJoEmWEzIyQ4tAMt0=
+
+Name: res/drawable-ldpi/ic_launcher.png
+SHA1-Digest: CepliFtAgOUV73Bk6BbHeZHAdXs=
+
+Name: assets/resources/images/header.psd
+SHA1-Digest: uyF/YhNwDJq/eYeXhfAtUQGbe4Y=
+
+Name: assets/resources/icons/Icon.png
+SHA1-Digest: iCBeT82wMrcLTtBDB7zcM8IMauU=
+
+Name: AndroidManifest.xml
+SHA1-Digest: C1GBZVUNy7N2jq653uAenolCPMo=
+
+Name: assets/resources/startup/1496x2048.png
+SHA1-Digest: VPnh0DfYrrX/o7sxg+APxF8Hm/M=
+
+Name: assets/resources/images/notify.png
+SHA1-Digest: lpObAWQj72Ex2gq4blXf5/5g7QY=
+
+Name: assets/resources/images/iconsprites.png
+SHA1-Digest: O4WtZI+Ad0vZ26X5L2pLvxHRvDQ=
+
+Name: assets/resources/images/logout.png
+SHA1-Digest: JKt4+eNpPMFN3Ayl85JA2FULbKs=
+
+Name: assets/resources/fonts/raleway-thin-webfont.woff
+SHA1-Digest: gZPWg6D+SiirbkPRzFzjzp7iqoE=
+
+Name: assets/resources/fonts/diy-regular_1-webfont.svg
+SHA1-Digest: AJv3FNcPBQdS0Glc664c4JNy65k=
+
+Name: assets/resources/fonts/opensans-light-webfont.ttf
+SHA1-Digest: iz1e3qkcP6XwUGNHC/Tthki0frI=
+
+Name: assets/resources/fonts/opensans-bold-webfont.eot
+SHA1-Digest: MX1fdpvXSMvyI5bNhtoOrIapV+8=
+
+Name: assets/resources/images/search.png
+SHA1-Digest: IjQfLtuYE8yRsk3nZB6wUD6bpfI=
+
+Name: assets/resources/startup/768x1004.png
+SHA1-Digest: pTv3djBYDZz2GuxWjge72TaidHM=
+
+Name: assets/resources/startup/640x920.png
+SHA1-Digest: XBRisISMlF+iOG1qKA/ITwgyNow=
+
+Name: assets/resources/images/storelogo.png
+SHA1-Digest: p8dlzFEzJYRN+DRGfYF11LD4nZ4=
+
+Name: assets/resources/startup/320x460.jpg
+SHA1-Digest: Qm1gTbLW/a0MYsQmxZH5K79vOTo=
+
+Name: assets/resources/fonts/opensans-regular-webfont.eot
+SHA1-Digest: vl75hLTWyPyiu39gB5B8qahoET4=
+
+Name: assets/resources/images/Nologo.png
+SHA1-Digest: sJTWEiXzrkpUBx9DzrEgmkTddz8=
+
+Name: assets/resources/images/Nologo.jpg
+SHA1-Digest: ULJA2ABUdkgyo1Padjd8XujsjXY=
+
+Name: assets/resources/fonts/raleway-thin-webfont.ttf
+SHA1-Digest: aVJV0Me16Qea7sM0oXYL4qPh+Z4=
+
+Name: assets/resources/fonts/diy-regular_1-webfont.ttf
+SHA1-Digest: Nhrkp6//NzR9XCkN6knZsilksHE=
+
+Name: assets/resources/images/star.png
+SHA1-Digest: 00C86idLB2qIFr8qjikF7iYiK7E=
+
+Name: classes.dex
+SHA1-Digest: pjUD8NNFEwsZ+BykRLHX060e54w=
+
+Name: assets/resources/images/header.png
+SHA1-Digest: cnI98B8PgZ3urPitk30QQUkoKyM=
+
+Name: assets/resources/images/arrow-down.png
+SHA1-Digest: Nl0+UgVwXBjO/d+Masn2Az9Y9FU=
+
+Name: assets/resources/images/half_star.png
+SHA1-Digest: 8EgHmbdCxPGfLAr47FpeyYpBfOU=
+
+Name: assets/resources/images/bgsprites.png
+SHA1-Digest: cICDu9jXTNUn4HytnEH6zsGO7Ck=
+
+Name: res/drawable-mdpi/ic_launcher.png
+SHA1-Digest: I3MP0NXnINH3Gb4a/IxI+nMF2mw=
+
+Name: assets/resources/images/no_star.png
+SHA1-Digest: W7V2MqT+blyb7abM7YcxdLkhP2w=
+
+Name: assets/resources/fonts/opensans-regular-webfont.ttf
+SHA1-Digest: roQ0rj+N9Hl34H0ZGWw4f1RVhXY=
+
+Name: assets/resources/images/loc.png
+SHA1-Digest: arDIUFrLbK6tlcar1snNIWtaCho=
+
+Name: assets/resources/icons/icon-spot~ipad.png
+SHA1-Digest: gyb58/PWoz7wRm8DKqBg0NkjTAg=
+
+Name: assets/resources/fonts/opensans-bold-webfont.ttf
+SHA1-Digest: 7FCm5UL17+b3eCija+3pwx6vfl4=
+
+Name: assets/resources/icons/Icon@2x.png
+SHA1-Digest: O3nOGsCXw3GHgGpwc7uEN2VJsqg=
+
+Name: res/drawable-hdpi/icon.png
+SHA1-Digest: v7kVJul5RFHLRs8QY4Jb8jE7Hy4=
+
